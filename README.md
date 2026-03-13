@@ -27,3 +27,22 @@ These output files are normally kept local and not committed to GitHub.
 ## License
 
 MIT
+
+## What changed in this version
+
+This is now version 1.6.3.2.
+Main cleanup in this version:
+- bumped version from 1.6.3.1 to 1.6.3.2
+- removed duplicate notes in this document
+- cleaned up the Python script structure
+- fixed the raw log newline write
+- kept Weather Underground credentials in a separate config file
+- kept support for both signed and unsigned Dragonslayer node IDs
+-kept support for both environmentMetrics and environment_metrics
+- locked the weather field list to the actual WS85-style names seen in live packets
+- improved the readable CSV log so it is short and human-friendly again
+- kept the noisy raw JSON log for troubleshooting
+- kept current reconnect behavior
+- kept current packet error handling with traceback output
+- kept the Weather Underground behavior where wind, gust, direction, and 1-hour rain send zero-style defaults when absent so graphs keep getting points
+- kept rainfall24h local only for now (until main meshtastic firmware is fixed)
