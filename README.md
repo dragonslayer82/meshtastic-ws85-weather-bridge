@@ -46,3 +46,29 @@ Main cleanup in this version:
 - kept current packet error handling with traceback output
 - kept the Weather Underground behavior where wind, gust, direction, and 1-hour rain send zero-style defaults when absent so graphs keep getting points
 - kept rainfall24h local only for now (until main meshtastic firmware is fixed)
+
+## Weather fields this version expects from WS85 telemetry
+
+These are the actual weather field names seen in live packets and used by this version:
+- temperature
+- voltage
+- windDirection
+- windSpeed
+- windGust
+- windLull
+- rainfall1h
+- rainfall24h
+- uvIndex if present later
+
+## What each file is for
+
+Main script:
+- /home/edward/weather_bridge.py
+Weather Underground config:
+- /home/edward/.weather_bridge.conf
+Readable weather history:
+- /home/edward/earthship_history.csv
+Raw packet troubleshooting log:
+- /home/edward/earthship_raw.jsonl
+Systemd service:
+- /etc/systemd/system/weather-bridge.service
