@@ -1,0 +1,14 @@
+[Unit]
+Description=Meshtastic Weather Bridge
+After=network.target
+
+[Service]
+Type=simple
+User=your username
+WorkingDirectory=/home/username
+ExecStart=/home/username/weather_env/bin/python3 /home/edward/weather_bridge.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
