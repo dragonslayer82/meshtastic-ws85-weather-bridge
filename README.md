@@ -1,41 +1,29 @@
 # Meshtastic WS85 Weather Bridge
 
-A Python bridge that listens for Meshtastic weather telemetry, filters for selected node IDs, logs the data locally, and uploads supported observations to Weather Underground.
+Python bridge for Meshtastic weather telemetry from a WS85 station.
 
-This project is meant for a practical home or remote weather relay setup where Meshtastic carries telemetry back to a bridge node that has internet access.
+It listens for weather telemetry, filters selected node IDs, writes local logs, and uploads supported values to Weather Underground.
 
-## What it does
+## Main files
 
-- Connects to a Meshtastic node over serial
-- Watches for telemetry packets from selected weather nodes
-- Parses supported weather values from WS85-related telemetry
-- Writes local CSV history
-- Writes raw packet logs for troubleshooting
-- Uploads supported values to Weather Underground
-- Ignores stale or invalid values
+- `weather_bridge.py` : main script
+- `sample.weather_bridge.conf` : example config
+- `meshtastic-weather-bridge.service` : example systemd service file
 
-## Features
+## Output files
 
-- Node filtering
-- CSV history logging
-- Raw JSONL packet logging
-- Weather Underground upload
-- Config file support
-- Safer handling for missing or stale values
-- Versioned script releases
+The script writes local output files such as:
+- `earthship_history.csv`
+- `earthship_raw.jsonl`
 
-## Requirements
+These output files are normally kept local and not committed to GitHub.
 
-- Python 3.10+
-- A Meshtastic device connected by serial
-- A weather node sending telemetry
-- Weather Underground station credentials if upload is enabled
+## Notes
 
-## Install
+- Do not upload your real config file
+- Do not commit Weather Underground credentials
+- Do not commit live log files unless they are sanitized examples
 
-```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/meshtastic-ws85-weather-bridge.git
-cd meshtastic-ws85-weather-bridge
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+## License
+
+MIT
