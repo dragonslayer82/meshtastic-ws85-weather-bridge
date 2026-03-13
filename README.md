@@ -4,6 +4,9 @@ Python bridge for Meshtastic weather telemetry from a WS85 station.
 
 It listens for weather telemetry, filters selected node IDs, writes local logs, and uploads supported values to Weather Underground.
 
+My starting point for modifying hardware. Had no software instructions.
+[Modification of the WS85 weather sensor](https://hackaday.io/project/196990-meshtastic-or-helium-ultrasonic-wx-station)
+
 ## Main files
 
 - `weather_bridge.py` : main script
