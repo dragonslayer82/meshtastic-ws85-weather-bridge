@@ -33,22 +33,21 @@ MIT
 
 ## What changed in this version
 
-This is now version 1.6.3.2.
-Main cleanup in this version:
-- bumped version from 1.6.3.1 to 1.6.3.2
-- removed duplicate notes in this document
-- cleaned up the Python script structure
-- fixed the raw log newline write
-- kept Weather Underground credentials in a separate config file
+This is now version 1.6.3.4.
+Main changes in this version:
+- bumped version from 1.6.3.3 to 1.6.3.4
+- keeps packet timestamps in Pacific time in the readable CSV
+- writes logs to a dedicated directory (`/home/edward/weather_bridge_logs`) instead of cluttering the home directory
+- adds a live local dashboard file (`/home/edward/weather_bridge_logs/weather_bridge_dashboard.html`) with recent weather rows, serial/radio status, WU upload status, and raw log tail
+- fixed pubsub handler wiring so `pub.subscribe(on_receive, "meshtastic.receive")` works with the packet callback signature while still using loaded WU credentials
+- uses a rotating raw JSON log so troubleshooting logs do not grow forever
+- tries multiple serial device paths in safe order
+- prefers a stable /dev/serial/by-id path first, then falls back to /dev/ttyUSB* and /dev/ttyACM*
+- replaced loose globals for WU credentials and upload timing with a single APP_STATE dictionary
 - kept support for both signed and unsigned Dragonslayer node IDs
--kept support for both environmentMetrics and environment_metrics
-- locked the weather field list to the actual WS85-style names seen in live packets
-- improved the readable CSV log so it is short and human-friendly again
-- kept the noisy raw JSON log for troubleshooting
-- kept current reconnect behavior
-- kept current packet error handling with traceback output
-- kept the Weather Underground behavior where wind, gust, direction, and 1-hour rain send zero-style defaults when absent so graphs keep getting points
-- kept rainfall24h local only for now (until main meshtastic firmware is fixed)
+- kept support for both environmentMetrics and environment_metrics
+- kept reconnect behavior and traceback logging
+- kept WU zero-style defaults for wind, gust, direction, and 1-hour rain when absent
 
 ## Weather fields this version expects from WS85 telemetry
 
@@ -70,8 +69,10 @@ Main script:
 Weather Underground config:
 - /home/edward/.weather_bridge.conf
 Readable weather history:
-- /home/edward/earthship_history.csv
+- /home/edward/weather_bridge_logs/earthship_history.csv
 Raw packet troubleshooting log:
-- /home/edward/earthship_raw.jsonl
+- /home/edward/weather_bridge_logs/earthship_raw.jsonl
+Local dashboard:
+- /home/edward/weather_bridge_logs/weather_bridge_dashboard.html
 Systemd service:
 - /etc/systemd/system/weather-bridge.service
